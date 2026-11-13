@@ -1,12 +1,12 @@
 window.SITE = {
   "event": {
-    "title": "SHINY ARMADOGGO!",
-    "date": "2026-11-28T20:00",
-    "desc": "The big community event. Details and rules in the Discord."
+    "title": "SEASON 2 DROPS!",
+    "date": "2026-11-20T11:11",
+    "desc": "ITS TIME FOR THE SERVER WIPE!!! NEW MODS NEW MAPS! LETS GOOOO"
   },
   "spotlight": {
-    "heading": "Annunaki Overhaul Server",
-    "text": "We have added an Annunaki Overhaul server into the mix, enjoy :D",
+    "heading": "Season 2",
+    "text": "Its that time of the year where its time for Season 2",
     "by": "WolfySim"
   },
   "servers": [
@@ -14,7 +14,7 @@ window.SITE = {
       "icon": "🦖",
       "name": "The Misfit Jurassic Junkies Bloodmoon",
       "desc": "Join the Discord for connection details.",
-      "tag": "ARK: Survival Ascended",
+      "tag": "ARK: Survival Ascendeded",
       "badge": "https://arkstatus.com/badge/11306831399.svg",
       "link": "https://arkstatus.com/server-details/the-misfit-jurassic-junkies-bloodmoon/11306831399"
     },
@@ -41,36 +41,50 @@ window.SITE = {
       "tag": "ARK: Survival Ascended",
       "badge": "https://arkstatus.com/badge/11306542091.svg",
       "link": "https://arkstatus.com/server-details/the-misfit-jurassic-junkies-island/11306542091"
-    },
-    {
-      "icon": "👽",
-      "name": "Annunaki Overhaul",
-      "desc": "Our newest server. Fresh world, fresh rules, fresh chaos.",
-      "tag": "New",
-      "badge": "",
-      "link": ""
     }
   ],
   "staff": [
     {
       "icon": "👑",
-      "name": "Name Here",
+      "name": "Vlad",
       "role": "Owner"
     },
     {
       "icon": "🛡️",
-      "name": "Name Here",
-      "role": "Admin"
+      "name": "WolfySim",
+      "role": "Owner"
     },
     {
       "icon": "⚔️",
-      "name": "Name Here",
-      "role": "Moderator"
+      "name": "MadloveJHQ",
+      "role": "Owner"
     },
     {
       "icon": "💬",
-      "name": "Name Here",
-      "role": "Community Manager"
+      "name": "JellyFish",
+      "role": "Owner"
+    },
+    {
+      "icon": "🛡️",
+      "name": "Rogue",
+      "role": "Moderator"
+    },
+    {
+      "icon": "🛡️",
+      "name": "StrawbsAlex",
+      "role": "Moderator"
+    }
+  ],
+  "events": [
+    {
+      "title": "Thanksgiving",
+      "date": "2026-11-26T01:00",
+      "desc": "HAPPY THANKS GIVING TO ALL!"
+    },
+    {
+      "title": "Christmas",
+      "date": "2026-12-25T01:00",
+      "desc": "MERRY CHRISTMAS TO ALL!"
     }
   ]
 };

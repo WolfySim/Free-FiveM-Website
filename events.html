@@ -106,8 +106,10 @@ evtitle.textContent=S.event.title;
 function tick(){var t=Math.max(0,EVENT-new Date()),p=function(n){return String(n).padStart(2,"0")};
 d.textContent=p(Math.floor(t/864e5));h.textContent=p(Math.floor(t/36e5)%24);m.textContent=p(Math.floor(t/6e4)%60);s.textContent=p(Math.floor(t/1e3)%60)}
 tick();setInterval(tick,1000);
-var dt=new Date(S.event.date),MON=["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"];
-evlist.innerHTML='<div class="row"><div class="date">'+dt.getDate()+"<small>"+MON[dt.getMonth()]+"</small></div><div><h3>"+esc(S.event.title)+"</h3><p>"+esc(S.event.desc)+"</p></div></div>";
+var MON=["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"];
+var items=[S.event].concat(S.events||[]).filter(function(x){return x&&x.title&&x.date&&new Date(x.date)>=new Date(Date.now()-864e5)}).sort(function(a,b){return new Date(a.date)-new Date(b.date)});
+evlist.innerHTML=items.length?items.map(function(x){var dt=new Date(x.date),tm=dt.toLocaleTimeString([],{hour:"numeric",minute:"2-digit"});
+return '<div class="row"><div class="date">'+dt.getDate()+"<small>"+MON[dt.getMonth()]+"</small></div><div><h3>"+esc(x.title)+"</h3><p>"+tm+(x.desc?" &middot; "+esc(x.desc):"")+"</p></div></div>"}).join(""):'<p class="sub">No upcoming events yet. Check back soon!</p>';
 </script>
 </body>
 </html>

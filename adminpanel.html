@@ -88,6 +88,7 @@ textarea{min-height:110px;resize:vertical}
 <main class="wrap" style="padding-bottom:40px">
 <div class="page"><h1>Site Editor</h1><p>Edit anything below, then click <b>Save</b>. Your site updates in about a minute.</p></div>
 <section style="padding:30px 0 0"><h2>Next Event</h2><div class="card fg" id="ev"></div></section>
+<section style="padding:30px 0 0"><h2>More Upcoming Events</h2><p class="sub">These show in the Upcoming list on the Events page, together with the Next Event above (which is added automatically). Past events hide themselves.</p><div id="ue"></div></section>
 <section style="padding:30px 0 0"><h2>Community Spotlight</h2><div class="card fg" id="sp"></div></section>
 <section style="padding:30px 0 0"><h2>Our Servers</h2><p class="sub">Badge and link are optional. Servers with a badge also appear in Live Server Status.</p><div id="sv"></div></section>
 <section style="padding:30px 0 0"><h2>Meet the Staff</h2><div id="st"></div></section>
@@ -121,6 +122,7 @@ function list(host,arr,fields,blank,word){host.innerHTML="";
 function build(){
  ev.innerHTML="";[["title","Event name"],["date","Starts (your local time)","dt"],["desc","Short description","area"]].forEach(function(f){ev.appendChild(field(f[1],D.event,f[0],f[2]))});
  sp.innerHTML="";[["heading","Heading"],["text","Quote / message","area"],["by","Submitted by"]].forEach(function(f){sp.appendChild(field(f[1],D.spotlight,f[0],f[2]))});
+ D.events=D.events||[];list(ue,D.events,[["title","Event name"],["date","Starts (your local time)","dt"],["desc","Short description","area"]],{title:"New Event",date:"",desc:""},"event");
  list(sv,D.servers,[["name","Server name"],["icon","Emoji icon"],["tag","Tag (e.g. Online, New)"],["desc","Description","area"],["badge","Status badge image URL (optional)"],["link","Status page link (optional)"]],{icon:"🎮",name:"New Server",desc:"",tag:"",badge:"",link:""},"server");
  list(st,D.staff,[["name","Name"],["role","Role"],["icon","Emoji icon"]],{icon:"🛡️",name:"Name Here",role:"Moderator"},"staff member");out()}
 build();
