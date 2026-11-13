@@ -12,11 +12,11 @@ window.SITE = {
   "servers": [
     {
       "icon": "🦖",
-      "name": "The Misfit Jurassic Junkies Bloodmoon",
+      "name": "The Misfit Jurassic Junkies Double Overhaul",
       "desc": "Join the Discord for connection details.",
       "tag": "ARK: Survival Ascendeded",
-      "badge": "https://arkstatus.com/badge/11306831399.svg",
-      "link": "https://arkstatus.com/server-details/the-misfit-jurassic-junkies-bloodmoon/11306831399"
+      "badge": "https://arkstatus.com/badge/11307226783.svg",
+      "link": "https://arkstatus.com/server-details/the-misfit-jurassic-junkies-double-overhaul/11307226783"
     },
     {
       "icon": "🦖",
