@@ -85,6 +85,11 @@ window.SITE = {
       "title": "Christmas",
       "date": "2026-12-25T01:00",
       "desc": "MERRY CHRISTMAS TO ALL!"
+    },
+    {
+      "title": "New Event",
+      "date": "",
+      "desc": ""
     }
   ]
 };
