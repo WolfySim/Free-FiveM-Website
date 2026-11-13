@@ -86,16 +86,16 @@ textarea{min-height:110px;resize:vertical}
 </style></head><body>
 <header><div class="wrap"><nav><span class="logo">THE MISFIT JUNKIES ADMIN</span><a class="btn sm" href="index.html">View site</a></nav></div></header>
 <main class="wrap" style="padding-bottom:40px">
-<div class="page"><h1>Site Editor</h1><p>Edit anything below, then click <b>Download site-data.js</b> and upload it to Neocities (replace the old one). Changes go live when you upload.</p></div>
+<div class="page"><h1>Site Editor</h1><p>Edit anything below, then click <b>Save</b>. Your site updates in about a minute.</p></div>
 <section style="padding:30px 0 0"><h2>Next Event</h2><div class="card fg" id="ev"></div></section>
 <section style="padding:30px 0 0"><h2>Community Spotlight</h2><div class="card fg" id="sp"></div></section>
 <section style="padding:30px 0 0"><h2>Our Servers</h2><p class="sub">Badge and link are optional. Servers with a badge also appear in Live Server Status.</p><div id="sv"></div></section>
 <section style="padding:30px 0 0"><h2>Meet the Staff</h2><div id="st"></div></section>
-<section style="padding:30px 0 0"><h2>Publishing</h2><div class="card item"><p class="sub" style="margin:0">Paste your Neocities API key (Neocities &rarr; Site Settings &rarr; API). It stays only in this browser and is never written into your site files.</p><label>API key<input type="password" id="apikey" autocomplete="off"></label><label style="display:flex;gap:8px;align-items:center;font-weight:400"><input type="checkbox" id="remember" style="width:auto"> Remember on this device</label></div></section>
+<section style="padding:30px 0 0"><h2>Publishing</h2><div class="card item"><p class="sub" style="margin:0">Enter your admin password to save straight to the site.</p><label>Admin password<input type="password" id="apikey" autocomplete="off"></label><label style="display:flex;gap:8px;align-items:center;font-weight:400"><input type="checkbox" id="remember" style="width:auto"> Remember on this device</label></div></section>
 <section style="padding:30px 0 0"><h2>Your data file</h2><textarea id="code" readonly></textarea></section>
 </main>
 <div class="bar"><div class="wrap row2">
-<button class="btn fill" id="pub" style="border:0;cursor:pointer;font-family:inherit">Save &amp; Publish</button>
+<button class="btn fill" id="pub" style="border:0;cursor:pointer;font-family:inherit">Save</button>
 <button class="btn sm" id="dl">Download site-data.js</button>
 <button class="btn sm" id="cp">Copy</button>
 <button class="btn sm" id="rs">Discard draft, reload published</button>
@@ -124,24 +124,23 @@ function build(){
  list(sv,D.servers,[["name","Server name"],["icon","Emoji icon"],["tag","Tag (e.g. Online, New)"],["desc","Description","area"],["badge","Status badge image URL (optional)"],["link","Status page link (optional)"]],{icon:"🎮",name:"New Server",desc:"",tag:"",badge:"",link:""},"server");
  list(st,D.staff,[["name","Name"],["role","Role"],["icon","Emoji icon"]],{icon:"🛡️",name:"Name Here",role:"Moderator"},"staff member");out()}
 build();
-dl.onclick=function(){var a=document.createElement("a");a.href=URL.createObjectURL(new Blob([code.value],{type:"text/javascript"}));a.download="site-data.js";a.click();msg.textContent="Downloaded. Upload it to Neocities."};
+dl.onclick=function(){var a=document.createElement("a");a.href=URL.createObjectURL(new Blob([code.value],{type:"text/javascript"}));a.download="site-data.js";a.click();msg.textContent="Downloaded. Add it to your GitHub repo."};
 cp.onclick=function(){code.select();try{document.execCommand("copy");msg.textContent="Copied"}catch(e){}};
 rs.onclick=function(){if(confirm("Discard unsaved edits?")){try{localStorage.removeItem("tmj-draft")}catch(e){}location.reload()}};
 
-try{var k0=localStorage.getItem("tmj-key");if(k0){apikey.value=k0;remember.checked=true}}catch(e){}
+var API="/api/save";
+try{var k0=localStorage.getItem("tmj-pw");if(k0){apikey.value=k0;remember.checked=true}}catch(e){}
 function download(){var a=document.createElement("a");a.href=URL.createObjectURL(new Blob([code.value],{type:"text/javascript"}));a.download="site-data.js";a.click()}
-dl.onclick=function(){download();msg.textContent="Downloaded. Upload it to Neocities."};
+dl.onclick=function(){download();msg.textContent="Downloaded. Add it to your GitHub repo."};
 pub.onclick=async function(){
- var key=apikey.value.trim();
- if(!key){msg.textContent="Paste your Neocities API key in Publishing first.";apikey.focus();return}
- try{if(remember.checked)localStorage.setItem("tmj-key",key);else localStorage.removeItem("tmj-key")}catch(e){}
- pub.disabled=true;msg.textContent="Publishing...";
+ var pw=apikey.value;
+ if(!pw){msg.textContent="Enter your admin password in Publishing first.";apikey.focus();return}
+ try{if(remember.checked)localStorage.setItem("tmj-pw",pw);else localStorage.removeItem("tmj-pw")}catch(e){}
+ pub.disabled=true;msg.textContent="Saving...";
  try{
-  var fd=new FormData();fd.append("site-data.js",new Blob([code.value],{type:"text/javascript"}),"site-data.js");
-  var r=await fetch("https://neocities.org/api/upload",{method:"POST",headers:{Authorization:"Bearer "+key},body:fd});
+  var r=await fetch(API,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({password:pw,content:code.value})});
   var j=await r.json();
-  if(j.result==="success"){msg.textContent="Published! Live at "+new Date().toLocaleTimeString()+". Refresh your site to see it."}
-  else{msg.textContent="Neocities said: "+(j.message||"upload failed")}
- }catch(e){download();msg.textContent="Your browser blocked direct publishing, so the file was downloaded instead. Upload it to Neocities."}
+  msg.textContent=j.ok?"Saved at "+new Date().toLocaleTimeString()+". Your site updates in about a minute.":(j.message||"Publish failed.");
+ }catch(e){download();msg.textContent="Could not reach the save server, so the file was downloaded instead. Add it to your GitHub repo."}
  pub.disabled=false};
 </script></body></html>
