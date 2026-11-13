@@ -88,8 +88,8 @@ window.SITE = {
     },
     {
       "title": "New Event",
-      "date": "",
-      "desc": ""
+      "date": "2026-12-12T01:00",
+      "desc": "test"
     }
   ]
 };
