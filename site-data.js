@@ -20,7 +20,7 @@ window.SITE = {
     },
     {
       "icon": "🦖",
-      "name": "The Misfit Jurassic Junkies Astraeos",
+      "name": "The Misfit Jurassic Junkies Svartalfheim",
       "desc": "Join the Discord for connection details.",
       "tag": "ARK: Survival Ascended",
       "badge": "https://arkstatus.com/badge/10568961606.svg",
@@ -28,7 +28,7 @@ window.SITE = {
     },
     {
       "icon": "🦖",
-      "name": "The Misfit Jurassic Junkies Ragnarok",
+      "name": "The Misfit Jurassic Junkies Thaloria",
       "desc": "Join the Discord for connection details.",
       "tag": "ARK: Survival Ascended",
       "badge": "https://arkstatus.com/badge/9671782577.svg",
